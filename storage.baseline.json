@@ -1,0 +1,47 @@
+{
+  "namespaces": {
+    "example.storage.Vault": {
+      "layout": {
+        "encoding": "inplace",
+        "label": "struct VaultStorage",
+        "members": [
+          {
+            "label": "total",
+            "offset": 0,
+            "slot": "0",
+            "type": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          {
+            "label": "balances",
+            "offset": 0,
+            "slot": "1",
+            "type": {
+              "encoding": "mapping",
+              "key": {
+                "encoding": "inplace",
+                "label": "address",
+                "numberOfBytes": "20"
+              },
+              "label": "mapping(address => uint256)",
+              "numberOfBytes": "32",
+              "value": {
+                "encoding": "inplace",
+                "label": "uint256",
+                "numberOfBytes": "32"
+              }
+            }
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "slot": "0x63a53815bfe44493ce6b602e02e6290b640027f8562f45263d0368a4174da300",
+      "source": "src/VaultLib.sol",
+      "type": "VaultStorage"
+    }
+  },
+  "version": 1
+}

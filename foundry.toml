@@ -1,0 +1,4 @@
+[profile.default]
+src = "src"
+solc = "0.8.36"
+remappings = ["@demo/=src/", "@diamond/=lib/diamond-lib/src/"]

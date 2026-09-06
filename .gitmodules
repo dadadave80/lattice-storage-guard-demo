@@ -1,0 +1,3 @@
+[submodule "lib/diamond-lib"]
+	path = lib/diamond-lib
+	url = https://github.com/dadadave80/diamond-lib.git
