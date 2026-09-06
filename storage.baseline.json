@@ -34,9 +34,19 @@
                 "numberOfBytes": "32"
               }
             }
+          },
+          {
+            "label": "epoch",
+            "offset": 0,
+            "slot": "2",
+            "type": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
           }
         ],
-        "numberOfBytes": "64"
+        "numberOfBytes": "96"
       },
       "slot": "0x63a53815bfe44493ce6b602e02e6290b640027f8562f45263d0368a4174da300",
       "source": "src/VaultLib.sol",
