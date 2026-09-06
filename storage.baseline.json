@@ -6,19 +6,9 @@
         "label": "struct VaultStorage",
         "members": [
           {
-            "label": "total",
-            "offset": 0,
-            "slot": "0",
-            "type": {
-              "encoding": "inplace",
-              "label": "uint256",
-              "numberOfBytes": "32"
-            }
-          },
-          {
             "label": "balances",
             "offset": 0,
-            "slot": "1",
+            "slot": "0",
             "type": {
               "encoding": "mapping",
               "key": {
@@ -33,6 +23,16 @@
                 "label": "uint256",
                 "numberOfBytes": "32"
               }
+            }
+          },
+          {
+            "label": "total",
+            "offset": 0,
+            "slot": "1",
+            "type": {
+              "encoding": "inplace",
+              "label": "uint256",
+              "numberOfBytes": "32"
             }
           }
         ],

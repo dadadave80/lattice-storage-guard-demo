@@ -5,8 +5,8 @@ bytes32 constant VAULT_STORAGE_SLOT = 0x63a53815bfe44493ce6b602e02e6290b640027f8
 
 /// @custom:storage-location erc7201:example.storage.Vault
 struct VaultStorage {
-    uint256 total;
     mapping(address => uint256) balances;
+    uint256 total;
 }
 
 /// @title VaultLib
