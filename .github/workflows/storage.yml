@@ -1,0 +1,24 @@
+name: Storage compatibility proof
+on: [push, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: v1.8.1
+      - run: forge test -vv
+      - uses: dadadave80/lattice/.github/actions/storage-layout@ea9ab78755f1eb671d4158f9c16351c55a42696b
+        with:
+          probe: script/StorageProbe.sol:StorageProbe
+          manifest: storage.manifest.json
+          baseline: storage.baseline.json
+          baseline-ref: dfd0f332eabde786bb44cbaabb3aa17da27ecb3e
+          foundry-profile: default
