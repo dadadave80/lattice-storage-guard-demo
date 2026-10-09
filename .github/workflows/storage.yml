@@ -1,24 +1,39 @@
 name: Storage compatibility proof
-on: [push, workflow_dispatch]
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
   guard:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
-          fetch-depth: 0
           persist-credentials: false
-      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1
         with:
-          version: v1.8.1
+          version: v1.8.5
       - run: forge test -vv
-      - uses: dadadave80/lattice/.github/actions/storage-layout@ea9ab78755f1eb671d4158f9c16351c55a42696b
+      # The trusted layout comes from the event, never from a file the change can edit: the pull
+      # request's base, or the previous head of main on a push. A manual run checks drift only.
+      - name: Pick and fetch the trusted commit
+        id: trusted
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          ref=""
+          if [ "$EVENT" = pull_request ]; then ref="$PR_BASE"; fi
+          if [ "$EVENT" = push ] && [ "$BEFORE" != 0000000000000000000000000000000000000000 ]; then ref="$BEFORE"; fi
+          if [ -n "$ref" ]; then git fetch --no-tags --depth=1 origin "$ref"; fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+      - uses: dadadave80/lattice/.github/actions/storage-layout@828e0a88d2eff10cfea786ab2dc7854cdf26785c # storage-layout-v1.0.0
         with:
           probe: script/StorageProbe.sol:StorageProbe
-          manifest: storage.manifest.json
-          baseline: storage.baseline.json
-          baseline-ref: dfd0f332eabde786bb44cbaabb3aa17da27ecb3e
-          foundry-profile: default
+          baseline: storage-layout.baseline
+          baseline-ref: ${{ steps.trusted.outputs.ref }}
