@@ -1,3 +1,4 @@
 ### VaultStorage @ erc7201:example.storage.Vault (slot 0x63a53815bfe44493ce6b602e02e6290b640027f8562f45263d0368a4174da300)
 0	0	total	t_uint256
 1	0	balances	t_mapping(t_address,t_uint256)
+2	0	fee	t_uint256
