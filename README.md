@@ -29,7 +29,13 @@ for its full scope.
 
 ## Proof runs (Action `storage-layout-v1.0.0`)
 
-Recorded below once each run completes.
+| Run | Commit | Result |
+|---|---|---|
+| Seed: no trusted baseline yet, so the Action fails closed | [`48d2772`](https://github.com/dadadave80/lattice-storage-guard-demo/commit/48d277237b5c4bcd7660a004ba42b259c9601e9c) | [red](https://github.com/dadadave80/lattice-storage-guard-demo/actions/runs/37923382947) |
+| Seed: drift-only check (manual run) | [`48d2772`](https://github.com/dadadave80/lattice-storage-guard-demo/commit/48d277237b5c4bcd7660a004ba42b259c9601e9c) | [green](https://github.com/dadadave80/lattice-storage-guard-demo/actions/runs/37923456260) |
+| [#1](https://github.com/dadadave80/lattice-storage-guard-demo/pull/1): reorder `VaultStorage` and regenerate the baseline | [`20eebf4`](https://github.com/dadadave80/lattice-storage-guard-demo/commit/20eebf4) | [red](https://github.com/dadadave80/lattice-storage-guard-demo/actions/runs/37923527240): "VaultStorage: existing members changed" |
+| [#1](https://github.com/dadadave80/lattice-storage-guard-demo/pull/1): restore the compatible order | [`ed5fb74`](https://github.com/dadadave80/lattice-storage-guard-demo/commit/ed5fb74) | [green](https://github.com/dadadave80/lattice-storage-guard-demo/actions/runs/37923624481) |
+| [#2](https://github.com/dadadave80/lattice-storage-guard-demo/pull/2): append `uint256 fee` and update the baseline | [`c721463`](https://github.com/dadadave80/lattice-storage-guard-demo/commit/c721463) | [green](https://github.com/dadadave80/lattice-storage-guard-demo/actions/runs/37923536837): "append-only relative to 48d2772" |
 
 ## Earlier runs
 
